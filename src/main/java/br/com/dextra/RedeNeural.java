@@ -69,7 +69,7 @@ public class RedeNeural {
 	}
 
 	private double[] getSaidaTreinamentoPrimeiraCamada(double[][] conjuntoTreinamento, int i) {
-		double[] saidasPrimeiraCamada = new double[2];
+		double[] saidasPrimeiraCamada = new double[nrNeuroniosPrimeiraCamada];
 		for (int j = 0; j < conexoesPrimeiraCamada.length; j++) {
 			double u = 0;
 			for (int k = 0; k < conexoesPrimeiraCamada[j].length; k++) {
@@ -139,6 +139,22 @@ public class RedeNeural {
 		for (int i = 0; i < conexoesSegundaCamada.length; i++) {
 			conexoesSegundaCamada[i] = Math.random();
 		}
+	}
+
+	public double[][] getConexoesPrimeiraCamada() {
+		return conexoesPrimeiraCamada;
+	}
+
+	public void setConexoesPrimeiraCamada(double[][] conexoesPrimeiraCamada) {
+		this.conexoesPrimeiraCamada = conexoesPrimeiraCamada;
+	}
+
+	public double[] getConexoesSegundaCamada() {
+		return conexoesSegundaCamada;
+	}
+
+	public void setConexoesSegundaCamada(double[] conexoesSegundaCamada) {
+		this.conexoesSegundaCamada = conexoesSegundaCamada;
 	}
 
 }
