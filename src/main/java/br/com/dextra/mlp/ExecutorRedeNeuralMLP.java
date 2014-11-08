@@ -23,7 +23,7 @@ public class ExecutorRedeNeuralMLP {
 
 		rede.treinar(ExecutorRedeNeuralMLP.CONJUNTO_TREINAMENTO, ExecutorRedeNeuralMLP.VALORES_ESPERADOS);
 
-		System.out.println("\n Teste depois do treinamento: -------------------------------------------------------------------------- \n");
+		System.out.println("\n Teste depois do treinamento: ----------------------------------------------------------------------- \n");
 		ExecutorRedeNeuralMLP.imprimirTesteDeClassificacao(rede);
 		
 	}
