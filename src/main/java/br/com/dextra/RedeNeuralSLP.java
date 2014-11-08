@@ -51,7 +51,7 @@ public class RedeNeuralSLP {
 	}
 
 	private void aprender(Double saida, int i) {
-		Double fatorAprendizado = RedeNeuralSLP.TAXA_APRENDIZADO * (esperados[i] - saida);
+		Double fatorAprendizado = RedeNeuralSLP.TAXA_APRENDIZADO + (esperados[i] - saida);
 		for (int j = 0; j < pesos.length; j++) {
 			pesos[j] += fatorAprendizado * amostras[j][i];
 		}
