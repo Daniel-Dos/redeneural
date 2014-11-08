@@ -31,7 +31,7 @@ public class RedeNeuralSLP {
 				}
 			}
 			epocas++;
-		} while (erro && epocas < 10000);
+		} while (erro);
 	}
 
 	public Double classificar(Double[] padrao) {
