@@ -9,7 +9,7 @@ public class ExecutorRedeNeuralMLP {
 		{1.0, 1.0, 1.0, 1.0}
 	};
 
-	private static double[] VALORES_ESPERADOS = {0.0, 0.0, 0.0, 1.0};
+	private static double[] VALORES_ESPERADOS = {.0, 1.0, 1.0, 0.0};
 
 	public static void main(String[] args) {
 
