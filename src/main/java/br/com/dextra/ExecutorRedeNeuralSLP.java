@@ -14,12 +14,12 @@ public class ExecutorRedeNeuralSLP {
 	public static void main(String[] args) {
 
 		RedeNeuralSLP rede = new RedeNeuralSLP(AMOSTRAS, ESPERADOS);
+		
 		rede.treinar();
-
-		Double[] padrao = {-1.0d, 0.5d, 0.7d, 0.1d};
+		
+		Double[] padrao = {-1.0d, 0.6d, 0.9d, 0.8d};
 		Double saida = rede.classificar(padrao);
-
-		System.out.printf("Saída: %d; Nr de épocas: %d", saida.intValue(), rede.getEpocas());
+		System.out.printf("Saída: %d; Nr de épocas: %d \n", saida.intValue(), rede.getEpocas());
 
 	}
 
