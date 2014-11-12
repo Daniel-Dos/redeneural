@@ -9,7 +9,7 @@ public class ExecutorRedeNeuralMLP {
 		{1.0, 1.0, 1.0, 1.0} // bias
 	};
 
-	private static double[] VALORES_ESPERADOS = {.0, 1.0, 1.0, 0.0};
+	private static double[] VALORES_ESPERADOS = {0.0, 1.0, 1.0, 0.0};
 
 	public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class ExecutorRedeNeuralMLP {
 		int nrNeuroniosEntrada = 3;
 
 		RedeNeuralMLP rede = new RedeNeuralMLP(nrNeuroniosPrimeiraCamada, nrNeuroniosEntrada);
-		
+
 		System.out.println("Teste antes do treinamento: --------------------------------------------------------------------------- \n");
 		ExecutorRedeNeuralMLP.imprimirTesteDeClassificacao(rede);
 
@@ -25,7 +25,7 @@ public class ExecutorRedeNeuralMLP {
 
 		System.out.println("\n Teste depois do treinamento: ----------------------------------------------------------------------- \n");
 		ExecutorRedeNeuralMLP.imprimirTesteDeClassificacao(rede);
-		
+
 	}
 
 	private static void imprimirTesteDeClassificacao(RedeNeuralMLP rede) {
