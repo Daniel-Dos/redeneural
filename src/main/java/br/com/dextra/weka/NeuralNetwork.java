@@ -17,18 +17,18 @@ public class NeuralNetwork {
 		MultilayerPerceptron neuralNets = new MultilayerPerceptron();
 		neuralNets.buildClassifier(instances);
 
-		int corretas = 0;
+		int asserts = 0;
 		int numInstances = instances.numInstances();
 
 		for (int i = 0; i < numInstances; i++) {
 			Instance instance = instances.instance(i);
-			double classe = neuralNets.classifyInstance(instance);
-			if (classe == instance.classValue()) {
-				corretas++;
+			double type = neuralNets.classifyInstance(instance);
+			if (type == instance.classValue()) {
+				asserts++;
 			}
 		}
 
-		System.out.printf("De %d instancias %d foram classificadas corretamente.", numInstances, corretas);
+		System.out.printf("De %d instancias %d foram classificadas corretamente.", numInstances, asserts);
 
 
 	}
