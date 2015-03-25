@@ -11,18 +11,18 @@ public class NeuralNetwork {
 	public static void main(String[] args) throws Exception {
 
 		FileReader reader = new FileReader("/home/everton.gago/projetos/redeneural/iris.arff");
-		Instances trainningInstances = new Instances(reader);
-		trainningInstances.setClassIndex(4);
+		Instances instances = new Instances(reader);
+		instances.setClassIndex(4);
 
-		MultilayerPerceptron mlp = new MultilayerPerceptron();
-		mlp.buildClassifier(trainningInstances);
+		MultilayerPerceptron neuralNets = new MultilayerPerceptron();
+		neuralNets.buildClassifier(instances);
 
 		int corretas = 0;
-		int numInstances = trainningInstances.numInstances();
+		int numInstances = instances.numInstances();
 
 		for (int i = 0; i < numInstances; i++) {
-			Instance instance = trainningInstances.instance(i);
-			double classe = mlp.classifyInstance(instance);
+			Instance instance = instances.instance(i);
+			double classe = neuralNets.classifyInstance(instance);
 			if (classe == instance.classValue()) {
 				corretas++;
 			}
