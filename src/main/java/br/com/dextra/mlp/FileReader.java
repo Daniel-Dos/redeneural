@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class FileReader {
 	
 	public static final int LINE_ITEMS = 12;
-	public static final int LINE_NUMBER = 444941;
+	public static final int LINE_NUMBER = 419909;
 	
 	private File file;
 	private double[][] data;
