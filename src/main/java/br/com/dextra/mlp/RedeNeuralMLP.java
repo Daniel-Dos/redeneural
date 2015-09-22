@@ -11,6 +11,8 @@ public class RedeNeuralMLP {
 	private int nrNeuroniosPrimeiraCamada;
 	private int nrNeuroniosEntrada;
 	private int epocas = 0;
+	
+	private int c = 0, e = 0, tErrosPositivo = 0, tErrosNegativo = 0;
 
 	public RedeNeuralMLP(int nrNeuroniosPrimeiraCamada, int nrNeuroniosEntrada) {
 		this.nrNeuroniosPrimeiraCamada = nrNeuroniosPrimeiraCamada;
@@ -32,16 +34,31 @@ public class RedeNeuralMLP {
 		}
 	}
 
-	public void classificar(double[] entrada) {
+	public void classificar(double[] entrada, long esperado) {
 		if (epocas > 99999) {
 			System.out.println("Nao foi possivel atingir um ponto de convergencia, verifique os parametros e a estrutura da rede.");
 		} else {
-			System.out.printf("Treinamento realizado em %s epocas. \n", epocas);
 			double[] saidasPrimeiraCamada = getSaidaClassificacaoPrimeiraCamada(entrada);
 			double[] entradaSegundaCamada = getEntradasSegundaCamada(saidasPrimeiraCamada);
 			double y = propagarSinalPelaSegundaCamada(entradaSegundaCamada);
-			System.out.println("Saida: " + Math.round(y));
+			long value = Math.round(y);
+			if (value == esperado) {
+				c++;
+			} else {
+				if (esperado == 1)
+					tErrosPositivo++;
+				else
+					tErrosNegativo++;
+				e++;
+			}
 		}
+	}
+	
+	public void imprimirEstatistica() {
+		double total = c + e;
+		double perCertos = (c * 100) / total;
+		double perErros  = (e * 100) / total;
+		System.out.println("Certos: " + perCertos + "% Errados: " + perErros + "%" + " Pos: " + tErrosPositivo + " Neg: " + tErrosNegativo);
 	}
 
 	private void aprender(double[][] conjuntoTreinamento, double[] entradaSegundaCamada, double gradiente, int i) {
