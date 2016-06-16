@@ -22,7 +22,7 @@ public class Executor {
 		rede.treinar(TREINO, ESPERADOS);
 		
 		System.out.println("Teste:");
-		rede.classificar(new double[]{0, 0, 1});
+		rede.classificar(new double[] { 0, 0, 1 });
 	}
 
 }
