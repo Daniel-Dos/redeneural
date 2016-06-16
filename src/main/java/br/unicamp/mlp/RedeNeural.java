@@ -1,8 +1,8 @@
-package br.com.dextra.mlp;
+package br.unicamp.mlp;
 
 import java.util.Arrays;
 
-public class RedeNeuralMLP {
+public class RedeNeural {
 
 	private static double TAXA_APRENDIZADO = 0.03;
 
@@ -12,9 +12,7 @@ public class RedeNeuralMLP {
 	private int nrNeuroniosEntrada;
 	private int epocas = 0;
 	
-	private int c = 0, e = 0, tErrosPositivo = 0, tErrosNegativo = 0;
-
-	public RedeNeuralMLP(int nrNeuroniosPrimeiraCamada, int nrNeuroniosEntrada) {
+	public RedeNeural(int nrNeuroniosPrimeiraCamada, int nrNeuroniosEntrada) {
 		this.nrNeuroniosPrimeiraCamada = nrNeuroniosPrimeiraCamada;
 		this.nrNeuroniosEntrada = nrNeuroniosEntrada;
 		this.inicializarConexoesSinapticasDaRede();
@@ -34,7 +32,7 @@ public class RedeNeuralMLP {
 		}
 	}
 
-	public void classificar(double[] entrada, long esperado) {
+	public void classificar(double[] entrada) {
 		if (epocas > 99999) {
 			System.out.println("Nao foi possivel atingir um ponto de convergencia, verifique os parametros e a estrutura da rede.");
 		} else {
@@ -42,23 +40,8 @@ public class RedeNeuralMLP {
 			double[] entradaSegundaCamada = getEntradasSegundaCamada(saidasPrimeiraCamada);
 			double y = propagarSinalPelaSegundaCamada(entradaSegundaCamada);
 			long value = Math.round(y);
-			if (value == esperado) {
-				c++;
-			} else {
-				if (esperado == 1)
-					tErrosPositivo++;
-				else
-					tErrosNegativo++;
-				e++;
-			}
+			System.out.println(value);
 		}
-	}
-	
-	public void imprimirEstatistica() {
-		double total = c + e;
-		double perCertos = (c * 100) / total;
-		double perErros  = (e * 100) / total;
-		System.out.println("Certos: " + perCertos + "% Errados: " + perErros + "%" + " Pos: " + tErrosPositivo + " Neg: " + tErrosNegativo);
 	}
 
 	private void aprender(double[][] conjuntoTreinamento, double[] entradaSegundaCamada, double gradiente, int i) {
@@ -114,14 +97,14 @@ public class RedeNeuralMLP {
 			double derivadaFuncaoTransferencia = entradaSegundaCamada[j] * (1.0 - entradaSegundaCamada[j]);
 			double sigma = derivadaFuncaoTransferencia * (conexoesSegundaCamada[j] * gradiente);
 			for (int k = 0; k < conexoesPrimeiraCamada[j].length; k++) {
-				conexoesPrimeiraCamada[j][k] += RedeNeuralMLP.TAXA_APRENDIZADO * sigma * conjuntoTreinamento[k][i];
+				conexoesPrimeiraCamada[j][k] += RedeNeural.TAXA_APRENDIZADO * sigma * conjuntoTreinamento[k][i];
 			}
 		}
 	}
 
 	private void retropropagarErroPelaSegundaCamada(double[] entradaSegundaCamada, double gradiente) {
 		for (int j = 0; j < conexoesSegundaCamada.length; j++) {
-			conexoesSegundaCamada[j] += RedeNeuralMLP.TAXA_APRENDIZADO * entradaSegundaCamada[j] * gradiente;
+			conexoesSegundaCamada[j] += RedeNeural.TAXA_APRENDIZADO * entradaSegundaCamada[j] * gradiente;
 		}
 	}
 
